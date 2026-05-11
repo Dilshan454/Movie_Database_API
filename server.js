@@ -20,4 +20,6 @@ mongoose
 })
 .catch((error) => console.log(error));
 app.use("/api/movies", movieRoutes);
+app.use("/api/auth",authRoutes);
+app.use("/api/reviews",reviewsRoutes);
 
