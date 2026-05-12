@@ -3,6 +3,11 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
+
+import authRoutes from "./routes/authRoutes.js";
+import movieRoutes from "./routes/movieRoutes.js";
+import reviewsRoutes from "./routes/reviewsRoutes.js";
+
 const app = express();
 dotenv.config();
 
