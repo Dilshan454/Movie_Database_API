@@ -30,33 +30,86 @@ function MovieForm({ fetchMovies }) {
             movie
         );
 
+        alert("🎬 Movie Added Successfully");
+
         fetchMovies();
 
-        alert("Movie Added");
+        setMovie({
+            title:"",
+            genre:"",
+            director:"",
+            rating:"",
+            year:"",
+            description:""
+        });
 
     };
 
     return (
 
-        <form onSubmit={handleSubmit}>
+        <div className="glass-card">
 
-            <input name="title" placeholder="Title" onChange={handleChange} />
+            <h2 className="form-title">
+                🎬 Add New Movie
+            </h2>
 
-            <input name="genre" placeholder="Genre" onChange={handleChange} />
+            <form className="modern-form" onSubmit={handleSubmit}>
 
-            <input name="director" placeholder="Director" onChange={handleChange} />
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Movie Title"
+                    value={movie.title}
+                    onChange={handleChange}
+                    required
+                />
 
-            <input name="rating" placeholder="Rating" onChange={handleChange} />
+                <input
+                    type="text"
+                    name="genre"
+                    placeholder="Genre"
+                    value={movie.genre}
+                    onChange={handleChange}
+                />
 
-            <input name="year" placeholder="Year" onChange={handleChange} />
+                <input
+                    type="text"
+                    name="director"
+                    placeholder="Director Name"
+                    value={movie.director}
+                    onChange={handleChange}
+                />
 
-            <input name="description" placeholder="Description" onChange={handleChange} />
+                <input
+                    type="number"
+                    name="rating"
+                    placeholder="Rating"
+                    value={movie.rating}
+                    onChange={handleChange}
+                />
 
-            <button type="submit">
-                Add Movie
-            </button>
+                <input
+                    type="number"
+                    name="year"
+                    placeholder="Release Year"
+                    value={movie.year}
+                    onChange={handleChange}
+                />
 
-        </form>
+                <textarea
+                    name="description"
+                    placeholder="Movie Description"
+                    value={movie.description}
+                    onChange={handleChange}
+                />
+
+                <button type="submit">
+                    ➕ Add Movie
+                </button>
+
+            </form>
+
+        </div>
 
     );
 

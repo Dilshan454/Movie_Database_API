@@ -30,29 +30,39 @@ function Dashboard() {
 
     return (
 
-        <div className="container">
+    <div className="dashboard">
 
-            <h1>Smart Movie System</h1>
+        <div className="top-bar">
+
+            <h1 className="dashboard-title">
+                🎬 Smart Movie Dashboard
+            </h1>
 
             <input
+                className="search-box"
                 type="text"
-                placeholder="Search Movie"
+                placeholder="Search Movies..."
                 onChange={(e) => setSearch(e.target.value)}
             />
+
+        </div>
+
+        <div className="form-container">
 
             <MovieForm fetchMovies={fetchMovies} />
 
             <ReviewForm />
 
-            <MovieList
-                movies={movies}
-                fetchMovies={fetchMovies}
-            />
-
         </div>
 
-    );
+        <MovieList
+            movies={movies}
+            fetchMovies={fetchMovies}
+        />
 
+    </div>
+
+);
 }
 
 export default Dashboard;

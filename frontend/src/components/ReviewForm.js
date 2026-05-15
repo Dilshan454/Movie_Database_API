@@ -28,43 +28,65 @@ function ReviewForm() {
             review
         );
 
-        alert("Review Added");
+        alert("⭐ Review Added Successfully");
+
+        setReview({
+            userName:"",
+            movieTitle:"",
+            comment:"",
+            stars:""
+        });
 
     };
 
     return (
 
-        <form onSubmit={handleSubmit}>
+        <div className="glass-card">
 
-            <input
-                name="userName"
-                placeholder="Your Name"
-                onChange={handleChange}
-            />
+            <h2 className="form-title">
+                ⭐ Add Movie Review
+            </h2>
 
-            <input
-                name="movieTitle"
-                placeholder="Movie Title"
-                onChange={handleChange}
-            />
+            <form className="modern-form" onSubmit={handleSubmit}>
 
-            <input
-                name="comment"
-                placeholder="Comment"
-                onChange={handleChange}
-            />
+                <input
+                    type="text"
+                    name="userName"
+                    placeholder="Your Name"
+                    value={review.userName}
+                    onChange={handleChange}
+                />
 
-            <input
-                name="stars"
-                placeholder="Stars"
-                onChange={handleChange}
-            />
+                <input
+                    type="text"
+                    name="movieTitle"
+                    placeholder="Movie Title"
+                    value={review.movieTitle}
+                    onChange={handleChange}
+                />
 
-            <button type="submit">
-                Add Review
-            </button>
+                <textarea
+                    name="comment"
+                    placeholder="Write Your Review..."
+                    value={review.comment}
+                    onChange={handleChange}
+                />
 
-        </form>
+                <input
+                    type="number"
+                    name="stars"
+                    placeholder="Stars (1-5)"
+                    value={review.stars}
+                    onChange={handleChange}
+                />
+
+                <button type="submit">
+                    ⭐ Submit Review
+                </button>
+
+            </form>
+
+        </div>
 
     );
 
