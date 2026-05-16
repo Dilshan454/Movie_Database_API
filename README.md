@@ -263,6 +263,11 @@ npm start
 ---
 
 
+### 🗄 MongoDB Database Collections
+![MongoDB](screenshots/mongodb.png)
+
+---
+
 ## 🌟 Future Improvements
 
 - [ ] JWT Authentication
