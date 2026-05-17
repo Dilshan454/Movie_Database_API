@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function MovieList({ movies, fetchMovies }) {
+
+    const [editingMovie, setEditingMovie] = useState(null);
+
+    const [updatedMovie, setUpdatedMovie] = useState({
+        title:"",
+        genre:"",
+        director:"",
+        rating:"",
+        year:"",
+        description:""
+    });
+
+    // DELETE MOVIE
 
     const deleteMovie = async (id) => {
 
@@ -9,8 +22,51 @@ function MovieList({ movies, fetchMovies }) {
             `http://localhost:5000/api/movies/${id}`
         );
 
-        fetchMovies();
+        alert("Movie Deleted");
 
+        fetchMovies();
+    };
+
+    // OPEN EDIT FORM
+
+    const handleEdit = (movie) => {
+
+        setEditingMovie(movie._id);
+
+        setUpdatedMovie({
+            title:movie.title,
+            genre:movie.genre,
+            director:movie.director,
+            rating:movie.rating,
+            year:movie.year,
+            description:movie.description
+        });
+    };
+
+    // UPDATE INPUT
+
+    const handleChange = (e) => {
+
+        setUpdatedMovie({
+            ...updatedMovie,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    // UPDATE MOVIE
+
+    const updateMovie = async (id) => {
+
+        await axios.put(
+            `http://localhost:5000/api/movies/${id}`,
+            updatedMovie
+        );
+
+        alert("Movie Updated");
+
+        setEditingMovie(null);
+
+        fetchMovies();
     };
 
     return (
@@ -19,23 +75,111 @@ function MovieList({ movies, fetchMovies }) {
 
             {movies.map((movie) => (
 
-                <div className="card" key={movie._id}>
+                <div className="movie-card" key={movie._id}>
 
-                    <h3>{movie.title}</h3>
+                    <div className="movie-banner">
+                        🎥
+                    </div>
 
-                    <p>{movie.genre}</p>
+                    <div className="movie-content">
 
-                    <p>{movie.director}</p>
+                        {editingMovie === movie._id ? (
 
-                    <p>{movie.rating}</p>
+                            <>
 
-                    <p>{movie.year}</p>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={updatedMovie.title}
+                                    onChange={handleChange}
+                                />
 
-                    <p>{movie.description}</p>
+                                <input
+                                    type="text"
+                                    name="genre"
+                                    value={updatedMovie.genre}
+                                    onChange={handleChange}
+                                />
 
-                    <button onClick={() => deleteMovie(movie._id)}>
-                        Delete
-                    </button>
+                                <input
+                                    type="text"
+                                    name="director"
+                                    value={updatedMovie.director}
+                                    onChange={handleChange}
+                                />
+
+                                <input
+                                    type="number"
+                                    name="rating"
+                                    value={updatedMovie.rating}
+                                    onChange={handleChange}
+                                />
+
+                                <input
+                                    type="number"
+                                    name="year"
+                                    value={updatedMovie.year}
+                                    onChange={handleChange}
+                                />
+
+                                <textarea
+                                    name="description"
+                                    value={updatedMovie.description}
+                                    onChange={handleChange}
+                                />
+
+                                <button
+                                    className="update-btn"
+                                    onClick={() => updateMovie(movie._id)}
+                                >
+                                    Save Changes
+                                </button>
+
+                            </>
+
+                        ) : (
+
+                            <>
+
+                                <h2>{movie.title}</h2>
+
+                                <p>
+                                    <b>Genre:</b> {movie.genre}
+                                </p>
+
+                                <p>
+                                    <b>Director:</b> {movie.director}
+                                </p>
+
+                                <p>
+                                    <b>Year:</b> {movie.year}
+                                </p>
+
+                                <p>{movie.description}</p>
+
+                                <div className="movie-rating">
+                                    ⭐ {movie.rating}/10
+                                </div>
+
+                                <button
+                                    className="update-btn"
+                                    onClick={() => handleEdit(movie)}
+                                >
+                                    Update Movie
+                                </button>
+
+                                <button
+                                    className="delete-btn"
+                                    onClick={() => deleteMovie(movie._id)}
+                                >
+                                    Delete Movie
+                                </button>
+
+                            </>
+
+                        )}
+
+                    </div>
 
                 </div>
 
@@ -44,7 +188,6 @@ function MovieList({ movies, fetchMovies }) {
         </div>
 
     );
-
 }
 
 export default MovieList;
