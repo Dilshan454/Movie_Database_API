@@ -1,0 +1,22 @@
+{
+  "info": {
+    "_postman_id": "51732ff7-65f8-4d59-96ec-6a2b9faa7aeb",
+    "name": "Movie_Database_API_Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54877467",
+    "_collection_link": "https://go.postman.co/collection/54877467-51732ff7-65f8-4d59-96ec-6a2b9faa7aeb?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ]
+}
